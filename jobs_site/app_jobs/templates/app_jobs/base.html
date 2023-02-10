@@ -8,7 +8,14 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.108.0">
-    <title>Поиск работы</title>
+     <script class="u-script" type="text/javascript" src="//capp.nicepage.com/assets/jquery-1.9.1.min.js" defer></script>
+    <script class="u-script" type="text/javascript" src="//capp.nicepage.com/bdb1a014bc1ed828106e942e837c1aade7693570/nicepage.js" defer></script>
+    <style>
+  .black-text {
+    color: black;
+  }
+</style>
+      <title>Поиск работы</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/cover/">
 
@@ -34,7 +41,7 @@
 <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
   <header class="mb-auto">
     <div>
-      <h3 class="float-md-start mb-0">Cover</h3>
+      <a href="{% url 'app_jobs:index' %}"> <h3 class="float-md-start mb-0">Cover</h3></a>
       <nav class="nav nav-masthead justify-content-center float-md-end">
         <a class="nav-link fw-bold py-1 px-0 active" aria-current="page" href="{% url 'app_jobs:index' %}">Главная</a>
 
@@ -51,11 +58,31 @@
 {% block content %}
 {% endblock %}
 
+
+    {% if is_paginated %}
+    <br>
+            <nav aria-label="Page navigation example">
+                <ul class="pagination justify-content-center">
+                    <li class="page-item
+                    {% if not page_obj.has_previous %} disabled {% endif %}">
+                        <a class="page-link" href="{% if page_obj.has_previous %} {% url 'app_jobs:search_result' page_obj.previous_page_number %}?city={% if request.user.is_authenticated %}{{request.user.city}}{% else %}{{request.GET.city}}{% endif %}&language={% if request.user.is_authenticated %}{{request.user.language}}{% else %}{{request.GET.language}}{% endif %} {% else %} # {% endif %}" tabindex="-1" aria-disabled="true">Предыдущая</a>
+                    </li>
+                    {% for page in paginator.page_range %}
+                    <li class="page-item"><a class="page-link" href="{% url 'app_jobs:search_result' page %}?city={% if request.user.is_authenticated %}{{request.user.city}}{% else %}{{request.GET.city}}{% endif %}&language={% if request.user.is_authenticated %}{{request.user.language}}{% else %}{{request.GET.language}}{% endif %}">{{ page }}</a></li>
+                   {% endfor %}
+                     <li class="page-item
+                    {% if not page_obj.has_next %} disabled {% endif %}">
+                        <a class="page-link" href="{% if page_obj.has_next %} {% url 'app_jobs:search_result' page_obj.next_page_number %}?city={% if request.user.is_authenticated %}{{request.user.city}}{% else %}{{request.GET.city}}{% endif %}&language={% if request.user.is_authenticated %}{{request.user.language}}{% else %}{{request.GET.language}}{% endif %} {% else %} # {% endif %}" tabindex="-1" aria-disabled="true">Следующая</a>
+                    </li>
+                </ul>
+            </nav>
+            {% endif %}
+
+
   <footer class="mt-auto text-white-50">
     <p>Cover template for <a href="https://getbootstrap.com/" class="text-white">Bootstrap</a>, by <a href="https://twitter.com/mdo" class="text-white">@mdo</a>.</p>
   </footer>
 </div>
-
 
 
   </body>

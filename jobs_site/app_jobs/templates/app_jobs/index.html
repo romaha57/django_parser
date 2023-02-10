@@ -1,12 +1,25 @@
-{% extends 'app_jobs/base_index.html' %}
+{% extends 'app_jobs/base.html' %}
 
 
 {% block content %}
   <main class="px-3">
     <h1>Cover your page.</h1>
     <p class="lead">Cover is a one-page template for building simple and beautiful home pages. Download, edit the text, and add your own fullscreen background photo to make it your own.</p>
-    <p class="lead">
-     <input class="form-control form-control-lg" type="text" placeholder="Найти работу..." aria-label=".form-control-lg example">
-    </p>
+
+    {% if request.user.is_authenticated %}
+
+      <a class="btn btn-primary" href="{% url 'app_jobs:search_result' 1 %}">Найти работу</a>
+
+    {% else %}
+
+    <form action="{% url 'app_jobs:search_result' 1 %}?/city=request.GET.city&language=request.GET.language">
+      {{ form.as_p }}
+      <button class="btn btn-primary" type="submit">Найти работу</button>
+    </form>
+
+
+
+
+    {% endif %}
   </main>
 {% endblock %}

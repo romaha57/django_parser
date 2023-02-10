@@ -1,8 +1,14 @@
-{% extends 'app_jobs/base_index.html' %}
+{% extends 'app_jobs/base.html' %}
 
 {% block content %}
 <form method="post">
     {% csrf_token %}
+    {% if request.user.city or request.user.language %}
+    <div class="alert alert-dark black-text" role="alert">
+            Выбранный город: {{request.user.city|default:'не выбрано'}}<br>
+            Выбранный язык программирования: {{request.user.language|default:'не выбрано'}}
+    </div>
+    {% endif %}
     {{form.as_p}}
     <div class="btn-group" style="width:100%">
     <a style="width:30%" class="btn btn-primary" href="{% url 'account_change_password' %}">Изменить пароль</a>
