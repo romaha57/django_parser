@@ -2,9 +2,7 @@
 from unittest import TestSuite
 
 from allauth.socialaccount.providers.openid_connect.provider import (
-    OpenIDConnectProvider,
-    provider_classes,
-)
+    OpenIDConnectProvider, provider_classes)
 from allauth.socialaccount.tests import OpenIDConnectTests
 from allauth.tests import TestCase
 

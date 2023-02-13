@@ -1,9 +1,8 @@
-from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import UpdateView
 
-from .models import User
 from .forms import ProfileChangeForm
+from .models import User
 
 
 class ProfileView(UpdateView):

@@ -1,22 +1,25 @@
 {% extends 'app_jobs/base.html' %}
 
+
 {% block content %}
 <form method="post">
     {% csrf_token %}
     {% if request.user.city or request.user.language %}
-    <div class="alert alert-dark black-text" role="alert">
-            Выбранный город: {{request.user.city|default:'не выбрано'}}<br>
-            Выбранный язык программирования: {{request.user.language|default:'не выбрано'}}
+
+    <div class="alert alert-primary p-3 mb-2 bg-dark text-white" role="alert">
+        Выбранный город: {{request.user.city|default:'не выбрано'|capfirst}}<br>
+        Выбранный язык программирования: {{request.user.language|default:'не выбрано'|capfirst}}
     </div>
+
     {% endif %}
+
     {{form.as_p}}
     <div class="btn-group" style="width:100%">
-    <a style="width:30%" class="btn btn-primary" href="{% url 'account_change_password' %}">Изменить пароль</a>
+        <a style="width:30%" class="btn btn-primary" href="{% url 'account_change_password' %}">Изменить пароль</a>
         <a style="width:30%" class="btn btn-warning" href="{% url 'account_email' %}">Изменить email</a>
-    <button style="width:30%" class="btn btn-success" type="submit">Сохранить</button>
-
-
-</div>
+        <button style="width:30%" class="btn btn-success" type="submit">Сохранить</button>
+    </div>
 
 </form>
+
 {% endblock %}

@@ -13,12 +13,8 @@ from django.utils.http import base36_to_int, int_to_base36, urlencode
 from allauth.account import app_settings, signals
 from allauth.account.adapter import get_adapter
 from allauth.exceptions import ImmediateHttpResponse
-from allauth.utils import (
-    get_request_param,
-    get_user_model,
-    import_callable,
-    valid_email_or_none,
-)
+from allauth.utils import (get_request_param, get_user_model, import_callable,
+                           valid_email_or_none)
 
 
 def _unicode_ci_compare(s1, s2):

@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Vacancy, City, Language
+from .models import City, Language, Vacancy
 
 
 class VacancyAdmin(admin.ModelAdmin):

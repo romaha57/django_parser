@@ -1,10 +1,9 @@
-import pprint
 import re
+from typing import Dict, List
 
-import requests
+# def get_city_id(city_name: str) -> str:
+#     """Получает id города по его названию"""
 
-
-# def get_city_id(city_name):
 #     city_name = city_name.lower()
 #     response = requests.get('https://api.hh.ru/areas')
 #     city_id = response.json()
@@ -15,19 +14,7 @@ import requests
 #                 return j['id']
 
 
-# def formation_url_for_hh(language, city_name=None):
-#    if city_name is None:
-#        url = f"https://api.hh.ru/vacancies/?enable_snippets=true&ored_clusters=true&text={language}&order_by=relevance&area=113"
-#    elif city_name.lower() == 'москва':
-#       url = f"https://api.hh.ru/vacancies/?enable_snippets=true&ored_clusters=true&text={language}&order_by=relevance&area=1"
-#    else:
-#   #   city_id = get_city_id(city_name=city_name)
-#       url = f"https://api.hh.ru/vacancies/?enable_snippets=true&ored_clusters=true&text={language}&order_by=relevance&area={city_id}"
-#
-#   return url
-
-
-def run_parser_hh(response_data):
+def run_parser_hh(response_data: Dict) -> List[Dict]:
     jobs_data = []
     for vacancy in response_data['items']:
         date = vacancy['created_at']
@@ -52,6 +39,8 @@ def run_parser_hh(response_data):
             salary = int((int(salary_from) + int(salary_to)) // 2)
 
         requirements = vacancy.get('snippet').get('requirement')
+
+        # удаляем html код из текста
         if requirements:
             requirements = re.sub('<highlighttext>*', '', requirements)
             requirements = re.sub('</highlighttext>', '', requirements)
@@ -68,4 +57,3 @@ def run_parser_hh(response_data):
         })
 
     return jobs_data
-

@@ -11,7 +11,7 @@ class Vacancy(models.Model):
     company_name = models.CharField(max_length=100, verbose_name='название компании')
     salary = models.CharField(max_length=100, verbose_name='зарплата')
     city_name = models.CharField(max_length=100, verbose_name='город', default='россия')
-    language = models.CharField(max_length=100, verbose_name='язык програмирования', default='python')
+    language = models.CharField(max_length=100, verbose_name='язык программирования', default='python')
 
     class Meta:
         verbose_name = 'вакансия'
@@ -45,4 +45,3 @@ class Language(models.Model):
 
     def __str__(self):
         return self.name
-

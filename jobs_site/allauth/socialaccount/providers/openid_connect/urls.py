@@ -3,16 +3,12 @@ import itertools
 
 from django.urls import include, path
 
-from allauth.socialaccount.providers.oauth2.views import (
-    OAuth2CallbackView,
-    OAuth2LoginView,
-)
-from allauth.socialaccount.providers.openid_connect.provider import (
-    provider_classes,
-)
-from allauth.socialaccount.providers.openid_connect.views import (
-    OpenIDConnectAdapter,
-)
+from allauth.socialaccount.providers.oauth2.views import (OAuth2CallbackView,
+                                                          OAuth2LoginView)
+from allauth.socialaccount.providers.openid_connect.provider import \
+    provider_classes
+from allauth.socialaccount.providers.openid_connect.views import \
+    OpenIDConnectAdapter
 
 
 def _factory(_provider_id):

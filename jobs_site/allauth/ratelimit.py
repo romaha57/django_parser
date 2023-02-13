@@ -5,7 +5,6 @@ from collections import namedtuple
 from django.core.cache import cache
 from django.shortcuts import render
 
-
 Rate = namedtuple("Rate", "amount duration")
 
 

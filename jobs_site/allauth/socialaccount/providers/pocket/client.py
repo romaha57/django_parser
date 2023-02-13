@@ -1,14 +1,12 @@
-import requests
 from urllib.parse import urlencode
 
+import requests
 from django.http import HttpResponseRedirect
 from django.utils.translation import gettext as _
 
-from allauth.socialaccount.providers.oauth.client import (
-    OAuthClient,
-    OAuthError,
-    get_token_prefix,
-)
+from allauth.socialaccount.providers.oauth.client import (OAuthClient,
+                                                          OAuthError,
+                                                          get_token_prefix)
 from allauth.utils import build_absolute_uri
 
 

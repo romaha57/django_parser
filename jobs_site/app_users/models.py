@@ -1,12 +1,10 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 
-from .data_for_create_user import list_languages, list_cities
-
 
 class User(AbstractUser):
-    city = models.CharField(max_length=100, verbose_name='город', choices=list_cities, null=True)
-    language = models.CharField(max_length=100, verbose_name='язык программирования', choices=list_languages, null=True)
+    city = models.CharField(max_length=100, verbose_name='город', default='россия')
+    language = models.CharField(max_length=100, verbose_name='язык программирования', default='python')
 
     class Meta:
         verbose_name = 'пользователь'

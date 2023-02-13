@@ -3,10 +3,7 @@ from django.conf import settings
 
 from allauth.socialaccount import app_settings
 from allauth.socialaccount.providers.openid_connect.provider import (
-    OpenIDConnectProvider,
-    OpenIDConnectProviderAccount,
-)
-
+    OpenIDConnectProvider, OpenIDConnectProviderAccount)
 
 OVERRIDE_NAME = (
     getattr(settings, "SOCIALACCOUNT_PROVIDERS", {})

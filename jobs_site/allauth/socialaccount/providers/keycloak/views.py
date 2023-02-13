@@ -1,13 +1,10 @@
 # -*- coding: utf-8 -*-
 
 from allauth.socialaccount.providers.keycloak.provider import KeycloakProvider
-from allauth.socialaccount.providers.oauth2.views import (
-    OAuth2CallbackView,
-    OAuth2LoginView,
-)
-from allauth.socialaccount.providers.openid_connect.views import (
-    OpenIDConnectAdapter,
-)
+from allauth.socialaccount.providers.oauth2.views import (OAuth2CallbackView,
+                                                          OAuth2LoginView)
+from allauth.socialaccount.providers.openid_connect.views import \
+    OpenIDConnectAdapter
 
 
 class KeycloakOAuth2Adapter(OpenIDConnectAdapter):

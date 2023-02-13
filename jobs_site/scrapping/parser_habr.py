@@ -1,7 +1,12 @@
+from typing import Dict, List
+
 from bs4 import BeautifulSoup as BS
+from requests import Response
 
 
-def run_parser_habr(response):
+def run_parser_habr(response: Response) -> List[Dict]:
+    """Собирает вакансии с сайта career.babr.com"""
+
     main_url = 'https://career.habr.com'
     jobs_data = []
     soup = BS(response.content, 'html.parser')
@@ -31,5 +36,3 @@ def run_parser_habr(response):
         })
 
     return jobs_data
-
-

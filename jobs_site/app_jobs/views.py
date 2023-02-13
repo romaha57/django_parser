@@ -1,13 +1,8 @@
-from django.db.models import Q
-from django.http import HttpResponse
-from django.shortcuts import render
 from django.urls import reverse_lazy
-from django.views import View
-from django.views.generic import TemplateView, FormView, ListView
+from django.views.generic import FormView, ListView
 
-from app_users.models import User
-from app_jobs.models import Vacancy
 from .forms import HomePageForm
+from .models import Vacancy
 
 
 class IndexView(FormView):
@@ -27,11 +22,12 @@ class SearchResultView(ListView):
     def get_queryset(self):
         queryset = super().get_queryset()
         if self.request.user.is_authenticated:
-            return queryset.filter(city_name=self.request.user.city, language=self.request.user.language)
-        return queryset.filter(city_name=self.request.GET['city'], language=self.request.GET['language'])
-
-
-
-
-
-
+            if self.request.user.city == 'россия':
+                return queryset.filter(language=self.request.user.language)
+            else:
+                return queryset.filter(city_name=self.request.user.city, language=self.request.user.language)
+        else:
+            if self.request.GET['city'] == 'россия':
+                return queryset.filter(language=self.request.GET['language'])
+            else:
+                return queryset.filter(city_name=self.request.GET['city'], language=self.request.GET['language'])

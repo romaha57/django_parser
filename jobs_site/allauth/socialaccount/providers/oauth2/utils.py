@@ -2,7 +2,6 @@ import base64
 import hashlib
 import random
 
-
 try:
     from secrets import token_urlsafe
 except ImportError:

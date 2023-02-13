@@ -6,12 +6,8 @@ from django.urls import reverse
 
 from allauth.account import app_settings as account_settings
 from allauth.account.adapter import get_adapter as get_account_adapter
-from allauth.account.utils import (
-    complete_signup,
-    perform_login,
-    user_display,
-    user_username,
-)
+from allauth.account.utils import (complete_signup, perform_login,
+                                   user_display, user_username)
 from allauth.exceptions import ImmediateHttpResponse
 
 from . import app_settings, signals

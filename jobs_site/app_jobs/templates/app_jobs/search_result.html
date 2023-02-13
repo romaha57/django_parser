@@ -1,4 +1,6 @@
 {% extends 'app_jobs/base.html' %}
+{% load humanize %}
+
 
 {% block content %}
 {% for vacancy in vacancy_list %}
@@ -6,11 +8,11 @@
 <br>
 <div class="card black-text text-center">
   <div class="card-header">
-    {{vacancy.date}}
+    {{vacancy.date|naturaltime}}
   </div>
   <div class="card-body">
     <h5 class="card-title">{{vacancy.title}}</h5>
-       <p class="card-text">{{vacancy.salary}}</p>
+       <p class="card-text">{{vacancy.salary|intcomma}}</p>
     <p class="card-text">{{vacancy.requirements}}</p>
     <a href="{{vacancy.link}}" class="btn btn-primary">Открыть вакансию на сайте</a>
   </div>
@@ -18,7 +20,9 @@
       {{vacancy.company_name}}
   </div>
 </div>
+
 {% empty %}
 <h2>К сожалению, по вашему запросу ничего не найдено</h2>
 {% endfor %}
+
 {% endblock %}

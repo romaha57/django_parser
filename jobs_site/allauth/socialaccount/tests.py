@@ -2,11 +2,11 @@ import base64
 import hashlib
 import json
 import random
-import requests
 import warnings
 from urllib.parse import parse_qs, urlparse
 
 import django
+import requests
 from django.conf import settings
 from django.contrib.auth.models import AnonymousUser
 from django.contrib.messages.middleware import MessageMiddleware
